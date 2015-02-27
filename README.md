@@ -10,6 +10,7 @@ The project targets small assisted living facilities.  The goal is to make manag
 
 ## Credits
 Lead Engineer: Richard Johnn
+
 Subject Matter Expert: Julio Vazquez
 
 ## License
