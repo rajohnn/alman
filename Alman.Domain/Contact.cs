@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Alman.Domain
 {
     [Table("Contact")]
-    public class Contact : Entity
+    public class Contact : ClientEntity
     {
         public ContactType ContactType { get; set; }
         public string Title { get; set; }
@@ -28,19 +28,11 @@ namespace Alman.Domain
     }
 
     [Table("Payer")]
-    public class Payer : Entity
+    public class Payer : ClientEntity
     {
         public Contact Contact { get; set; }
         public bool IsTaxExempt { get; set; }
-    }
-
-    [Table("ContactPhoto")]
-    public class ContactPhoto : Entity
-    {
-        public Contact Contact { get; set; }
-        public string Path { get; set; }
-        public string ContentType { get; set; }
-    }
+    }   
 
     public enum ContactType
     {

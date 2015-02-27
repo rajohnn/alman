@@ -10,7 +10,7 @@ using Alman.Fx.Security;
 namespace Alman.Domain
 {
     [Table("User")]
-    public class User : Entity
+    public class User : ClientEntity
     {
         public virtual Contact Contact { get; set; }
 

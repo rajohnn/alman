@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Alman.Domain
 {
     [Table("MemberActivityLog")]
-    public class UserActivityLog : Entity
+    public class UserActivityLog : ClientEntity
     {
         public User User { get; set; }
         public DateTime EventTimestamp { get; set; }

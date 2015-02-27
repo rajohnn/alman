@@ -48,9 +48,12 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Contact.cs" />
+    <Compile Include="ContactPhoto.cs" />
+    <Compile Include="DataPartition.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Phone.cs" />
+    <Compile Include="Security.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TenantService.cs" />

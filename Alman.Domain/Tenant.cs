@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Alman.Domain
 {
     [Table("Tenant")]
-    public class Tenant : Entity
+    public class Tenant : ClientEntity
     {
         public Contact Contact { get; set; }
 

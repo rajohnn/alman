@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Alman.Domain
 {
     [Table("Service")]
-    public class Service : Entity
+    public class Service : ClientEntity
     {
         public string Name { get; set; }
         public virtual ServiceCategory ServiceCategory { get; set; }

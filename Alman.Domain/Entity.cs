@@ -13,14 +13,21 @@ namespace Alman.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
-
-        public DateTime LastModified { get; set; }
         public bool IsDeleted { get; set; }
-        
-        public virtual User ModifiedBy { get; set;}
     }
 
-    abstract public class UserSortableEntity : Entity
+    abstract public class ClientEntity : Entity
+    {
+        public int DataPartitionId { get; set; }
+        public DateTime LastModified { get; set; }
+
+        public int? ModifiedById { get; set; }
+
+        [Required]
+        public virtual User ModifiedBy { get; set; }
+    }
+
+    abstract public class UserSortableEntity : ClientEntity
     {
         public int SortOrder { get; set; }
 
