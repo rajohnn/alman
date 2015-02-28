@@ -1,31 +1,105 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "ALMAN - Assisted Living Software";
 }
+<!-- Page Content -->
+<div class="container">
+    <!-- Marketing Icons Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Welcome to ALMAN
+            </h1>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-check"></i> Responsive UI</h4>
+                </div>
+                <div class="panel-body">
+                    <p>ALMAN can be run on any device, from a desktop computer, tablets, and even your cell phone.  Digitize your business with the power of the cloud.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-unlock"></i> Cloud unlocked for small business</h4>
+                </div>
+                <div class="panel-body">
+                    <p>By taking advantage of the cloud, you can run your small facility with all the advantages of a big business.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-fw fa-compass"></i> Easy to Use</h4>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        ALMAN was built from the ground up by people with experience in the Assisted Living community. Scheduling tasks and tracking your business
+                        has never been easier.
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- /.row -->
+    <!-- Features Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">ALMAN Business Features</h2>
+        </div>
+        <div class="col-md-6">
+            <p>The ALMAN application is built on the following technologies:</p>
+            <ul>
+                <li>
+                    <strong>ASP.NET MVC</strong>
+                </li>
+                <li>C#</li>
+                <li>SQL Server 2014</li>
+                <li>Runs on Microsoft Azure</li>
+            </ul>
+            <p>
+                ALMAN was built on top of Microsoft's technology suite of tools, all with the goal of optimizing
+                how your data is leveraged in the cloud.
+            </p>
+            <p>Need some additional marketing speal here.</p>
+        </div>
+        <div class="col-md-6">
+            <img class="img-responsive" src="~/Content/Images/cloud.jpg" alt="">
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- Call to Action Section -->
+    <div class="row" style="margin:10px">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="well">
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    If you're interested in ALMAN, it is easy to sign up and get started.<br />
+                    <i>(Users will be able to sign-up and create an ALMAN account here)</i>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-primary btn-block" href="#">Create an ALMAN Account</a>
+            </div>
+        </div>
     </div>
 </div>
+<!-- /.container -->
+@section scripts {
+    <!-- Script to Activate the Carousel -->
+
+    <script>
+        $(function () {
+            $('.carousel').carousel({
+                interval: 5000 //changes the speed
+            })
+        });
+    </script>
+}
