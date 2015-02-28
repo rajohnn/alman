@@ -53,6 +53,7 @@ namespace Alman.Data
         public virtual DbSet<CareItem> CareItems { get; set; }
         
         public virtual DbSet<Disease> Diseases { get; set; }
+        public virtual DbSet<DataPartition> DataPartitions { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

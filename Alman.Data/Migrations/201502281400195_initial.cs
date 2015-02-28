@@ -3,7 +3,7 @@ namespace Alman.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialPost : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -13,7 +13,7 @@ namespace Alman.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         AddressType = c.Int(nullable: false),
-                        Stree1 = c.String(),
+                        Street1 = c.String(),
                         Street2 = c.String(),
                         City = c.String(),
                         State = c.String(),
@@ -103,6 +103,19 @@ namespace Alman.Data.Migrations
                 .ForeignKey("dbo.User", t => t.ModifiedById, cascadeDelete: true)
                 .Index(t => t.ModifiedById)
                 .Index(t => t.Contact_Id);
+            
+            CreateTable(
+                "dbo.DataPartition",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        IsDeleted = c.Boolean(nullable: false),
+                        Address_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Address", t => t.Address_Id)
+                .Index(t => t.Address_Id);
             
             CreateTable(
                 "dbo.Disease",
@@ -921,6 +934,7 @@ namespace Alman.Data.Migrations
             DropForeignKey("dbo.Feature", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.ExitReason", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.Disease", "ModifiedById", "dbo.User");
+            DropForeignKey("dbo.DataPartition", "Address_Id", "dbo.Address");
             DropForeignKey("dbo.ContactPhoto", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.ContactPhoto", "Contact_Id", "dbo.Contact");
             DropForeignKey("dbo.CareItem", "ModifiedById", "dbo.User");
@@ -996,6 +1010,7 @@ namespace Alman.Data.Migrations
             DropIndex("dbo.Feature", new[] { "ModifiedById" });
             DropIndex("dbo.ExitReason", new[] { "ModifiedById" });
             DropIndex("dbo.Disease", new[] { "ModifiedById" });
+            DropIndex("dbo.DataPartition", new[] { "Address_Id" });
             DropIndex("dbo.ContactPhoto", new[] { "Contact_Id" });
             DropIndex("dbo.ContactPhoto", new[] { "ModifiedById" });
             DropIndex("dbo.Contact", new[] { "Id" });
@@ -1032,6 +1047,7 @@ namespace Alman.Data.Migrations
             DropTable("dbo.Feature");
             DropTable("dbo.ExitReason");
             DropTable("dbo.Disease");
+            DropTable("dbo.DataPartition");
             DropTable("dbo.ContactPhoto");
             DropTable("dbo.Contact");
             DropTable("dbo.User");

@@ -64,9 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmanContext.cs" />
-    <Compile Include="Migrations\201502271802031_InitialPost.cs" />
-    <Compile Include="Migrations\201502271802031_InitialPost.Designer.cs">
-      <DependentUpon>201502271802031_InitialPost.cs</DependentUpon>
+    <Compile Include="Migrations\201502281400195_initial.cs" />
+    <Compile Include="Migrations\201502281400195_initial.Designer.cs">
+      <DependentUpon>201502281400195_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,8 +99,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502271802031_InitialPost.resx">
-      <DependentUpon>201502271802031_InitialPost.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502281400195_initial.resx">
+      <DependentUpon>201502281400195_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

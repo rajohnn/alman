@@ -11,7 +11,7 @@ namespace Alman.Domain
     public class Address : Entity
     {
         public AddressType AddressType { get; set; }
-        public string Stree1 { get; set; }
+        public string Street1 { get; set; }
         public string Street2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
