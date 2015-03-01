@@ -27,11 +27,13 @@ namespace Alman.Web
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                 "~/Scripts/knockout-{version}.js",
-                "~/Scripts/knockout.mapping-latest.js"
+                "~/Scripts/knockout.mapping-latest.js",
+                "~/Scripts/knockout.validation.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/site.css",
                       "~/Content/font-awesome.css"
             ));
