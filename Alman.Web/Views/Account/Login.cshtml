@@ -20,7 +20,7 @@
     <div class="row binding">
 
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <div style="margin-top:5px" data-bind="visible: ShowMessage">
+            <div style="margin-top:5px" data-bind="visible: Message().length > 0">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
                         <div class="row">
@@ -147,9 +147,16 @@
                 .success(function (data, status, xhr) {
                     console.log("success");
                     var model = ko.mapping.fromJS(data);
-                    home.model.ShowMessage(model.ShowMessage());
-                    home.model.FailureCount(model.FailureCount());
-                    home.model.Message(model.Message());
+                    var isAuthenticated = model.IsAuthenticated();
+
+                    if (!isAuthenticated) {
+                        home.model.IsAuthenticated(model.IsAuthenticated());
+                        home.model.FailureCount(model.FailureCount());
+                        home.model.Message(model.Message());
+                    }
+                    else {
+                        window.location.href = "@Url.Content("~/App/Main")";
+                    }
 
                 })
                 .fail(function (errorMessage) {

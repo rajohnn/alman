@@ -33,13 +33,13 @@ namespace Alman.Web.Controllers
                 {
                     model.FailureCount = model.FailureCount + 1;
                     model.Message = message;
-                    model.ShowMessage = true;
+                    model.IsAuthenticated = false;
                 }
                 else
                 {
                     model.Message = "Authenticated";
                     model.FailureCount = 0;
-                    model.ShowMessage = false;
+                    model.IsAuthenticated = true;
                 }   
             }            
             return Json(model);
