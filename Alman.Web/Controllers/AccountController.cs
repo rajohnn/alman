@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading;
 
 namespace Alman.Web.Controllers
 {
@@ -40,7 +41,7 @@ namespace Alman.Web.Controllers
                     model.FailureCount = 0;
                     model.ShowMessage = false;
                 }   
-            }
+            }            
             return Json(model);
         }
 

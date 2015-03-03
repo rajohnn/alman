@@ -75,7 +75,10 @@
                     </span>
                 </div>
 
-                <button type="button" class="btn btn-primary" data-bind="click: home.login">
+                <button id="submit" type="button" class="btn btn-primary has-spinner" data-bind="click: home.login">
+                    <span class="spinner">
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                    </span>
                     <span class="fa fa-sign-in"></span> Sign In
                 </button>
                 <a style="margin-left:20px" href="@Url.Action("ResetPassword", "Account")">I forgot my password</a>
@@ -128,6 +131,9 @@
                 if (!home.model.FacilityCode.isValid())
                     return;
 
+                $("#submit").addClass("active");
+                $("#submit").prop("disabled", true);
+
                 var data = ko.mapping.toJSON(home.model);
                 var url = "/Account/Login";
 
@@ -148,6 +154,10 @@
                 })
                 .fail(function (errorMessage) {
                     console.log("failed");
+                })
+                .always(function() {
+                    $("#submit").removeClass("active");
+                    $("#submit").prop("disabled", false);
                 })
 
             }
