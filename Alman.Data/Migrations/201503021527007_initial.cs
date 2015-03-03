@@ -18,21 +18,6 @@ namespace Alman.Data.Migrations
                         City = c.String(),
                         State = c.String(),
                         PostalCode = c.String(),
-                        IsDeleted = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.CareItem",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Value = c.String(),
-                        Description = c.String(),
-                        UserGuidance = c.String(),
-                        ExpirationDate = c.DateTime(),
-                        SortOrder = c.Int(nullable: false),
                         DataPartitionId = c.Int(nullable: false),
                         LastModified = c.DateTime(nullable: false),
                         ModifiedById = c.Int(nullable: false),
@@ -85,6 +70,26 @@ namespace Alman.Data.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
+                "dbo.CareItem",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Value = c.String(),
+                        Description = c.String(),
+                        UserGuidance = c.String(),
+                        ExpirationDate = c.DateTime(),
+                        SortOrder = c.Int(nullable: false),
+                        DataPartitionId = c.Int(nullable: false),
+                        LastModified = c.DateTime(nullable: false),
+                        ModifiedById = c.Int(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.User", t => t.ModifiedById, cascadeDelete: true)
+                .Index(t => t.ModifiedById);
+            
+            CreateTable(
                 "dbo.ContactPhoto",
                 c => new
                     {
@@ -110,12 +115,10 @@ namespace Alman.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        Description = c.String(),
                         IsDeleted = c.Boolean(nullable: false),
-                        Address_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Address", t => t.Address_Id)
-                .Index(t => t.Address_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Disease",
@@ -860,10 +863,27 @@ namespace Alman.Data.Migrations
                 .Index(t => t.Role_Id)
                 .Index(t => t.User_Id);
             
+            CreateTable(
+                "dbo.VirtualHost",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DomainName = c.String(),
+                        Description = c.String(),
+                        DataPartitionId = c.Int(nullable: false),
+                        LastModified = c.DateTime(nullable: false),
+                        ModifiedById = c.Int(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.User", t => t.ModifiedById, cascadeDelete: true)
+                .Index(t => t.ModifiedById);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.VirtualHost", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.UserRoles", "User_Id", "dbo.User");
             DropForeignKey("dbo.UserRoles", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.UserRoles", "ModifiedById", "dbo.User");
@@ -934,12 +954,13 @@ namespace Alman.Data.Migrations
             DropForeignKey("dbo.Feature", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.ExitReason", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.Disease", "ModifiedById", "dbo.User");
-            DropForeignKey("dbo.DataPartition", "Address_Id", "dbo.Address");
             DropForeignKey("dbo.ContactPhoto", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.ContactPhoto", "Contact_Id", "dbo.Contact");
             DropForeignKey("dbo.CareItem", "ModifiedById", "dbo.User");
+            DropForeignKey("dbo.Address", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.User", "ModifiedById", "dbo.User");
             DropForeignKey("dbo.Contact", "Id", "dbo.User");
+            DropIndex("dbo.VirtualHost", new[] { "ModifiedById" });
             DropIndex("dbo.UserRoles", new[] { "User_Id" });
             DropIndex("dbo.UserRoles", new[] { "Role_Id" });
             DropIndex("dbo.UserRoles", new[] { "ModifiedById" });
@@ -1010,12 +1031,13 @@ namespace Alman.Data.Migrations
             DropIndex("dbo.Feature", new[] { "ModifiedById" });
             DropIndex("dbo.ExitReason", new[] { "ModifiedById" });
             DropIndex("dbo.Disease", new[] { "ModifiedById" });
-            DropIndex("dbo.DataPartition", new[] { "Address_Id" });
             DropIndex("dbo.ContactPhoto", new[] { "Contact_Id" });
             DropIndex("dbo.ContactPhoto", new[] { "ModifiedById" });
+            DropIndex("dbo.CareItem", new[] { "ModifiedById" });
             DropIndex("dbo.Contact", new[] { "Id" });
             DropIndex("dbo.User", new[] { "ModifiedById" });
-            DropIndex("dbo.CareItem", new[] { "ModifiedById" });
+            DropIndex("dbo.Address", new[] { "ModifiedById" });
+            DropTable("dbo.VirtualHost");
             DropTable("dbo.UserRoles");
             DropTable("dbo.TenantServiceRange");
             DropTable("dbo.TenantServicePayer");
@@ -1049,9 +1071,9 @@ namespace Alman.Data.Migrations
             DropTable("dbo.Disease");
             DropTable("dbo.DataPartition");
             DropTable("dbo.ContactPhoto");
+            DropTable("dbo.CareItem");
             DropTable("dbo.Contact");
             DropTable("dbo.User");
-            DropTable("dbo.CareItem");
             DropTable("dbo.Address");
         }
     }

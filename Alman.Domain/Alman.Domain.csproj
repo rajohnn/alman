@@ -62,6 +62,7 @@
     <Compile Include="SelectionEntities.cs" />
     <Compile Include="Tenant.cs" />
     <Compile Include="UserActivityLog.cs" />
+    <Compile Include="VirtualHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

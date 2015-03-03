@@ -16,6 +16,9 @@ body {
   margin: 0 auto;
   width: 100%;
 }
+.huge {
+  font-size: 40px;
+}
 /* Home Page Carousel */
 header.carousel {
   height: 50%;

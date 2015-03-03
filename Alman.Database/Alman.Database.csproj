@@ -44,6 +44,7 @@
   <ItemGroup>
     <Content Include="1.0.0\00 - Generate DatabaseUpdate table.sql" />
     <Content Include="1.0.0\01 - Insert Root.sql" />
+    <Content Include="1.0.0\02 - Add Template and Demo.sql" />
     <Content Include="Template.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

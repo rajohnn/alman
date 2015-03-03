@@ -188,6 +188,7 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.less" />
+    <None Include="Properties\PublishProfiles\alman.pubxml" />
     <None Include="Properties\PublishProfiles\AlmanWeb.pubxml" />
     <Content Include="Scripts\c3.js" />
     <Content Include="Scripts\c3.min.js" />
@@ -247,6 +248,24 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alman.Data\Alman.Data.csproj">
+      <Project>{60963ae2-92a8-468c-aac8-b85bc08893af}</Project>
+      <Name>Alman.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alman.Domain\Alman.Domain.csproj">
+      <Project>{8b59237c-c3ac-42da-9bba-674e464b501d}</Project>
+      <Name>Alman.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alman.Fx\Alman.Fx.csproj">
+      <Project>{206426b1-ef6e-4db9-90b7-6028b9860ccd}</Project>
+      <Name>Alman.Fx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alman.Servics\Alman.Servics.csproj">
+      <Project>{78319ef4-6c8c-4f55-85be-8fa91174afb6}</Project>
+      <Name>Alman.Servics</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

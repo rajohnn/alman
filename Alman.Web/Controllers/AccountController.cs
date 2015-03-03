@@ -1,4 +1,7 @@
-﻿using Alman.Web.Models;
+﻿using Alman.Servics;
+using Alman.Domain;
+
+using Alman.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +24,24 @@ namespace Alman.Web.Controllers
         {
             if (model != null)
             {
-                System.Diagnostics.Debug.WriteLine(model.Username);
+                string message = string.Empty;
+                var service = new UserService();
+
+                User user = service.Login(model.FacilityCode, model.Username, model.Password, out message);
+                if (user == null)
+                {
+                    model.FailureCount = model.FailureCount + 1;
+                    model.Message = message;
+                    model.ShowMessage = true;
+                }
+                else
+                {
+                    model.Message = "Authenticated";
+                    model.FailureCount = 0;
+                    model.ShowMessage = false;
+                }   
             }
-            return View();
+            return Json(model);
         }
 
         public ActionResult ResetPassword()

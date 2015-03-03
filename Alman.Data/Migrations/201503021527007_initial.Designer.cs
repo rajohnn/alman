@@ -13,7 +13,7 @@ namespace Alman.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201502281400195_initial"; }
+            get { return "201503021527007_initial"; }
         }
         
         string IMigrationMetadata.Source

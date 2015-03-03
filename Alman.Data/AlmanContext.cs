@@ -14,7 +14,7 @@ namespace Alman.Data
         }
 
         public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<User> Members { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<IdentificationType> IdentificationTypes { get; set; }
@@ -54,7 +54,7 @@ namespace Alman.Data
         
         public virtual DbSet<Disease> Diseases { get; set; }
         public virtual DbSet<DataPartition> DataPartitions { get; set; }
-        
+        public virtual DbSet<VirtualHost> VirtualHost { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

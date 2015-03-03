@@ -23,36 +23,17 @@ VALUES(@AppVersion, @GlobalVersion, @DataUpdateName, getdate(), suser_sname())
 
 -- Chicken before the egg issue.  To successfully insert a root that is entered by a root, you need to disabled null checks for the insert
 -- then update the MemberModifiedId foriegn key reference.
-	Insert into [Address] (
-		AddressType,
-		Street1,
-		Street2,
-		City,
-		[State],
-		PostalCode,
-		IsDeleted
-	)
-	values
-	(
-		1,
-		'2601 Herdon St',
-		'',
-		'Valrico',
-		'FL',
-		'33596',
-		0
-	)
-	
+		
 	Insert Into [DataPartition] (
 		Name,
-		IsDeleted,
-		Address_Id
+		Description,
+		IsDeleted
 	)
 	values(
 		'Root',
-		0,
-		@@IDENTITY
-	)
+		'The global partition for ALMAN administrators.',
+		0
+	)	
 
 	ALTER Table [User] DROP CONSTRAINT [FK_dbo.User_dbo.User_ModifiedById]
 
@@ -78,8 +59,24 @@ VALUES(@AppVersion, @GlobalVersion, @DataUpdateName, getdate(), suser_sname())
 		0
 	)
 
-	Update [User] set ModifiedById = @@IDENTITY where id = @@IDENTITY
+	Declare @id int = @@IDENTITY
+	Update [User] set ModifiedById = @id where id = @id
 
 	ALTER Table [User] ADD CONSTRAINT [FK_dbo.User_dbo.User_ModifiedById] UNIQUE(ModifiedById)
+
+	INSERT INTO [dbo].[VirtualHost]
+           ([DomainName]
+           ,[Description]
+           ,[DataPartitionId]   
+		   ,[LastModified]        
+           ,[ModifiedById]
+           ,[IsDeleted])
+     VALUES
+           ('Global'
+           ,'The root virtual host.  This will be used by ALMAN administrators for altering system data elements.'
+           ,1    
+		   ,getDate()       
+           ,@id
+           ,0)
 
 commit tran

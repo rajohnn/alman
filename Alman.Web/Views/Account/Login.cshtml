@@ -7,7 +7,7 @@
 <div class="container center-div">
     <p></p>
     <div class="row">
-        <div class="col-lg-6 col-md-8 col-sm-10">            
+        <div class="col-lg-6 col-md-8 col-sm-10">
             <h4>
                 <span class="fa fa-user fa-2x"></span> Sign in to begin using ALMAN
 
@@ -17,16 +17,31 @@
 
     <hr style="margin-top:0;margin-bottom:10px" />
 
-    <div class="row">
-        <div class="col-lg-6 col-md-8 col-sm-10">
-            <form id="login-form" role="form">
+    <div class="row binding">
 
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div style="margin-top:5px" data-bind="visible: ShowMessage">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <i class="fa fa-exclamation-circle fa-3x"></i>
+                            </div>
+                            <div class="col-xs-11">
+                                <div><strong>There was a problem with your request:</strong></div>
+                                <div data-bind="text: Message"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form id="login-form" role="form">
                 <div class="form-group" data-bind="validationElement: FacilityCode">
                     <label class="control-label" for="facility">Facility Identifer</label>
                     <input id="facility"
                            class="form-control"
                            type="text"
-                           data-bind="textinput: FacilityCode"                           
+                           data-bind="textinput: FacilityCode"
                            maxlength="20"
                            placeholder="ALMAN facility ID" required />
                     <span class="help-block" data-bind="validationMessage: FacilityCode"></span>
@@ -50,25 +65,24 @@
 
                     <input id="login-password"
                            class="form-control"
-                           maxlength="20"                           
+                           maxlength="20"
                            type="password"
                            data-bind="textinput: Password"
                            placeholder="enter password" required />
 
                     <span class="help-block has-error" data-bind="validationMessage: Password">
                         <span class="fa fa-exclamation-circle"></span>
-                     </span>
+                    </span>
                 </div>
 
                 <button type="button" class="btn btn-primary" data-bind="click: home.login">
                     <span class="fa fa-sign-in"></span> Sign In
                 </button>
-
                 <a style="margin-left:20px" href="@Url.Action("ResetPassword", "Account")">I forgot my password</a>
-
             </form>
-        </div>
 
+
+        </div>
     </div>
 </div>
 
@@ -78,7 +92,7 @@
         $(function() {
             home.init();
             $("#facility").focus();
-            ko.validation.init({                
+            ko.validation.init({
                 errorElementClass: 'has-error',
                 errorMessageClass: 'help-block',
                 decorateElement: true,
@@ -87,29 +101,31 @@
         });
 
         var home = {
-            model: ko.observable(),
-
+            model: null,
             init: function () {
                 var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
                 if ( serverModel) {
-                    var form = $("#container")[0];
-                    home.model(ko.mapping.fromJS(serverModel));
-                    home.model().Username.extend({ required: true, email: true });
-                    home.model().Password.extend( { required: true });
-                    home.model().FacilityCode.extend( { required: true, minLength:3 });
-                   
-                    ko.applyBindings(home.model, form);
+                    var container = $(".binding")[0];
+                    home.model = ko.mapping.fromJS(serverModel);
+                    home.extendModel();
+                    ko.applyBindings(home.model, container);
                     ko.validation.init();
-                   
                 }
+            },
+            extendModel: function() {
+                home.model.Username.extend({ required: true, email: true });
+                home.model.Password.extend( { required: true });
+                home.model.FacilityCode.extend( { required: true, minLength:3 });
             },
             login: function() {
 
-                if ( !home.model().Username.isValid())
+                if (!home.model.Username == "root") {
+                    if ( !home.model.Username.isValid())
+                        return;
+                }
+                if (!home.model.Password.isValid())
                     return;
-                if (!home.model().Password.isValid())
-                    return;
-                if (!home.model().FacilityCode.isValid())
+                if (!home.model.FacilityCode.isValid())
                     return;
 
                 var data = ko.mapping.toJSON(home.model);
@@ -124,6 +140,11 @@
                 })
                 .success(function (data, status, xhr) {
                     console.log("success");
+                    var model = ko.mapping.fromJS(data);
+                    home.model.ShowMessage(model.ShowMessage());
+                    home.model.FailureCount(model.FailureCount());
+                    home.model.Message(model.Message());
+
                 })
                 .fail(function (errorMessage) {
                     console.log("failed");

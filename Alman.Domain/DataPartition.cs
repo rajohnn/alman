@@ -11,6 +11,6 @@ namespace Alman.Domain
     public class DataPartition : Entity
     {        
         public string Name { get; set; }
-        public Address Address { get; set; }
+        public string Description { get; set; }
     }
 }
