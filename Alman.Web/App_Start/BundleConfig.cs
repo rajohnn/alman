@@ -25,6 +25,14 @@ namespace Alman.Web
                 "~/Scripts/respond.js"             
             ));
 
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/metisMenu.js",
+                "~/Scripts/raphael.js",
+                "~/Scripts/morris.js",
+                "~/Scripts/morris-data.js",
+                "~/Scripts/app.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                 "~/Scripts/knockout-{version}.js",
                 "~/Scripts/knockout.mapping-latest.js",
@@ -36,6 +44,15 @@ namespace Alman.Web
                       "~/Content/bootstrap-theme.css",
                       "~/Content/site.css",
                       "~/Content/font-awesome.css"
+            ));
+
+            bundles.Add(new StyleBundle("~/Content/app/css").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/metisMenu.css",
+                "~/Content/timeline.css",
+                "~/Content/app.css",
+                "~/Content/morris.css",
+                "~/Content/font-awesome.css"
             ));
         }
     }

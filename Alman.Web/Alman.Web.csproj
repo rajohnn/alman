@@ -140,6 +140,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\App\AppAreaRegistration.cs" />
+    <Compile Include="Areas\App\Controllers\MainController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,6 +151,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app.css">
+      <DependentUpon>app.less</DependentUpon>
+    </Content>
+    <Content Include="Content\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css">
       <DependentUpon>bootstrap-theme.less</DependentUpon>
     </Content>
@@ -163,12 +171,15 @@
     <Content Include="Content\Images\slide_1.jpg" />
     <Content Include="Content\Images\slide_2.jpg" />
     <Content Include="Content\Images\slide_3.jpg" />
+    <Content Include="Content\metisMenu.css" />
+    <Content Include="Content\morris.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\timeline.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -188,6 +199,15 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.less" />
+    <Content Include="Areas\App\Views\web.config" />
+    <Content Include="Areas\App\Views\Shared\_layoutApp.cshtml" />
+    <Content Include="Content\app.less" />
+    <Content Include="Content\mixins.less" />
+    <Content Include="Content\variables.less" />
+    <Content Include="Content\app.css.map">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
+    <Content Include="Areas\App\Views\Main\Index.cshtml" />
     <None Include="Properties\PublishProfiles\alman.pubxml" />
     <None Include="Properties\PublishProfiles\AlmanWeb.pubxml" />
     <Content Include="Scripts\c3.js" />
@@ -211,16 +231,24 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\metisMenu.js" />
+    <Content Include="Scripts\metisMenu.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\morris-data.js" />
+    <Content Include="Scripts\morris.js" />
+    <Content Include="Scripts\morris.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\raphael-min.js" />
+    <Content Include="Scripts\raphael.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -244,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\App\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
