@@ -19,17 +19,11 @@ namespace Alman.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/moment.js",                
-                "~/Scripts/respond.js"             
-            ));
-
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/metisMenu.js",
-                "~/Scripts/raphael.js",
-                "~/Scripts/morris.js",
-                "~/Scripts/morris-data.js",
+                "~/Scripts/raphael.js",                
+                "~/Scripts/moment.js",                
+                "~/Scripts/respond.js",   
                 "~/Scripts/app.js"
             ));
 

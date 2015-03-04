@@ -1,4 +1,10 @@
-﻿body {
+﻿@font-face {
+  font-family: 'Myriad Pro Semibold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../content/fonts/MYRIADPRO-SEMIBOLD.woff') format('woff');
+}
+body {
   background-color: #f8f8f8;
 }
 #wrapper {
@@ -16,6 +22,30 @@
     padding: 0 30px;
     border-left: 1px solid #e7e7e7;
   }
+}
+.floor {
+  font-size: 30px;
+  width: 50px;
+  color: white;
+  text-align: center;
+}
+.loc2 {
+  background-color: #337ab7;
+}
+.loc1 {
+  background-color: #5cb85c;
+}
+.loc3 {
+  background-color: #d9534f;
+}
+.title {
+  font-family: 'Myriad Pro Semibold';
+  font-size: 24pt;
+  color: #337ab7;
+}
+.sub-title {
+  font-family: 'Myriad Pro Semibold';
+  font-size: 16pt;
 }
 .navbar-top-links {
   margin-right: 0;
@@ -163,37 +193,6 @@
 }
 .login-panel {
   margin-top: 25%;
-}
-.flot-chart {
-  display: block;
-  height: 400px;
-}
-.flot-chart-content {
-  width: 100%;
-  height: 100%;
-}
-table.dataTable thead .sorting,
-table.dataTable thead .sorting_asc,
-table.dataTable thead .sorting_desc,
-table.dataTable thead .sorting_asc_disabled,
-table.dataTable thead .sorting_desc_disabled {
-  background: transparent;
-}
-table.dataTable thead .sorting_asc:after {
-  content: "\f0de";
-  float: right;
-  font-family: fontawesome;
-}
-table.dataTable thead .sorting_desc:after {
-  content: "\f0dd";
-  float: right;
-  font-family: fontawesome;
-}
-table.dataTable thead .sorting:after {
-  content: "\f0dc";
-  float: right;
-  font-family: fontawesome;
-  color: rgba(50, 50, 50, 0.5);
 }
 .btn-circle {
   width: 30px;

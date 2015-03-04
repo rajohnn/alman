@@ -174,6 +174,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\cloud.jpg" />
+    <Content Include="Content\Images\profile.jpg" />
     <Content Include="Content\Images\slide_1.jpg" />
     <Content Include="Content\Images\slide_2.jpg" />
     <Content Include="Content\Images\slide_3.jpg" />
@@ -264,6 +265,9 @@
     <Content Include="Content\Fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Fonts\MYRIADPRO-REGULAR.woff" />
+    <Content Include="Content\Fonts\MYRIADPRO-SEMIBOLD.woff" />
+    <Content Include="Content\Fonts\MYRIADPRO-SEMIBOLDIT.woff" />
     <None Include="Properties\PublishProfiles\alman.pubxml" />
     <None Include="Properties\PublishProfiles\AlmanWeb.pubxml" />
     <Content Include="Scripts\c3.js" />
