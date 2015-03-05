@@ -13,5 +13,10 @@ namespace Alman.Web.Areas.App.Controllers
         {
             return View();
         }
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }
