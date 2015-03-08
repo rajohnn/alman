@@ -18,5 +18,6 @@ namespace Alman.Web.Areas.App.Controllers
         {
             return View();
         }
+        
     }
 }

@@ -12,6 +12,11 @@ namespace Alman.Web.Controllers
         public ActionResult Index()
         {   
             return View();
-        }       
+        }
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }

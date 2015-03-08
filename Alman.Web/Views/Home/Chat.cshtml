@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chat</h2>
+<div id="hitCount" style="font-size:200px"></div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+
+    <script>
+        $(function () {
+            // var con = $.hubConnection(document.location.origin + document.location.pathname);
+            var con = $.hubConnection();
+            var hub = con.createHubProxy("almanCounter"); 
+            con.logging = true;
+
+            hub.on('onHitRecorded', function (i) {
+                $("#hitCount").text(i);
+            });
+
+            con.start(function () {
+                hub.invoke('recordHit');
+            }).done(function () {
+                console.log("invoked subscribe");
+            }).fail(function () {
+                console.log("Could not connect.");
+            });
+        });
+
+    </script>
+}
+
