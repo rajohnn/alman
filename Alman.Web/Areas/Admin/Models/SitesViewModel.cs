@@ -9,14 +9,14 @@ namespace Alman.Web.Areas.Admin.Models
     public class SitesViewModel
     {
         public List<SiteViewModel> Sites { get; set; }
-        public SiteViewModel SelectedSite { get; set; }
+        public List<SiteViewModel> SelectedSites { get; set; }
         
-
         public SitesViewModel() :this(null) { }
 
         public SitesViewModel(IEnumerable<VirtualHost> hosts)
         {            
             this.Sites = new List<SiteViewModel>();
+            this.SelectedSites = new List<SiteViewModel>();
 
             foreach(var host in hosts) {
                 var model = new SiteViewModel();
@@ -38,11 +38,5 @@ namespace Alman.Web.Areas.Admin.Models
         public string HostDescription { get; set; }
         public bool IsDeleted { get; set; }
         public string LastModifiedBy { get; set; }
-        public bool IsSiteSelected { get; set; }
-
-        public SiteViewModel()
-        {
-            IsSiteSelected = false;
-        }
     }
 }

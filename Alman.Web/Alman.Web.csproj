@@ -45,11 +45,11 @@
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -198,6 +198,12 @@
     <Content Include="Content\Images\slide_1.jpg" />
     <Content Include="Content\Images\slide_2.jpg" />
     <Content Include="Content\Images\slide_3.jpg" />
+    <Content Include="Content\KoGrid.css">
+      <DependentUpon>KoGrid.less</DependentUpon>
+    </Content>
+    <Content Include="Content\KoGrid.min.css">
+      <DependentUpon>KoGrid.css</DependentUpon>
+    </Content>
     <Content Include="Content\metisMenu.css" />
     <Content Include="Content\morris.css" />
     <Content Include="Content\Site.css">
@@ -304,6 +310,10 @@
     <Content Include="Areas\Admin\Views\Main\LocationEditor.cshtml" />
     <Content Include="Areas\Admin\Views\Main\UserRoles.cshtml" />
     <Content Include="Areas\Admin\Views\Main\Preferences.cshtml" />
+    <Content Include="Content\KoGrid.less" />
+    <Content Include="Content\KoGrid.css.map">
+      <DependentUpon>KoGrid.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\alman.pubxml" />
     <None Include="Properties\PublishProfiles\AlmanWeb.pubxml" />
     <Content Include="Scripts\c3.js" />
@@ -329,6 +339,8 @@
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\knockout.validation.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\koGrid-2.1.1.debug.js" />
+    <Content Include="Scripts\koGrid-2.1.1.js" />
     <Content Include="Scripts\metisMenu.js" />
     <Content Include="Scripts\metisMenu.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />

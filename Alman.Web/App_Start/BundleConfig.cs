@@ -24,6 +24,7 @@ namespace Alman.Web
                 "~/Scripts/raphael.js",                
                 "~/Scripts/moment.js",                
                 "~/Scripts/respond.js",   
+                "~/Scripts/koGrid-{version}.js",
                 "~/Scripts/app.js"
             ));
 
@@ -46,7 +47,8 @@ namespace Alman.Web
                 "~/Content/timeline.css",
                 "~/Content/app.css",
                 "~/Content/morris.css",
-                "~/Content/font-awesome.css"
+                "~/Content/font-awesome.css",
+                "~/Content/KoGrid.css"
             ));
         }
     }
