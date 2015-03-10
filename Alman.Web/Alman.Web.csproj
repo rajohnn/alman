@@ -155,6 +155,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\MainController.cs" />
+    <Compile Include="Areas\Admin\Models\SitesViewModel.cs" />
     <Compile Include="Areas\App\AppAreaRegistration.cs" />
     <Compile Include="Areas\App\Controllers\MainController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -292,6 +295,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\App\Views\Main\Chat.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Main\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_layoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\Sites.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\Services.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\ListEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\LocationEditor.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\UserRoles.cshtml" />
+    <Content Include="Areas\Admin\Views\Main\Preferences.cshtml" />
     <None Include="Properties\PublishProfiles\alman.pubxml" />
     <None Include="Properties\PublishProfiles\AlmanWeb.pubxml" />
     <Content Include="Scripts\c3.js" />

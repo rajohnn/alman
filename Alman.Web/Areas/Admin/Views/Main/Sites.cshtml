@@ -1,0 +1,83 @@
+﻿@using Newtonsoft.Json
+@using Alman.Domain
+
+@model Alman.Web.Areas.Admin.Models.SitesViewModel
+@{
+    ViewBag.Title = "Sites";
+    Layout = "~/Areas/Admin/Views/Shared/_layoutAdmin.cshtml";
+}
+<div id="sites">
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>Alman Sites</h2>
+        </div>
+        
+        <div class="col-lg-2 hidden-sm hidden-xs hidden-md">
+            <button type="button" class="btn btn-default" style="margin-top:15px;margin-bottom:5px">
+                <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Add New Site
+            </button>
+        </div>
+        <div class="col-lg-2 hidden-lg">
+            <a style="margin-bottom:15px" href="#"><span class="fa fa-plus-circle"></span> Add New Site</a>
+        </div>
+    </div>
+    <hr style="margin-top:0" />
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Partition Name</th>
+                    <th>Host Name</th>
+                    <th>Description</th>
+                    <th>Last Modified By</th>
+                    <th>Disabled</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: Sites">
+                <tr style="cursor: pointer" data-bind="click: sites.SelectSite, css: { selected: IsSiteSelected}">
+                    <td data-bind="text: HostId"></td>
+                    <td data-bind="text: PartitionName"></td>
+                    <td data-bind="text: HostName"></td>
+                    <td data-bind="text: HostDescription"></td>
+                    <td data-bind="text: LastModifiedBy"></td>
+                    <td data-bind="text: IsDeleted"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+    <div class="row">
+        <div data-bind="if: SelectedSite">
+            Display: <span data-bind="text: SelectedSite"></span>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            sites.init();
+        })
+
+        var sites = {
+            model: null,
+            init: function () {
+                var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+                if (serverModel) {
+                    var container = $("#sites")[0];
+                    sites.model = ko.mapping.fromJS(serverModel);
+                    ko.applyBindings(sites.model, container);
+                }
+            },
+            selectSite: function(item) {
+                console.log("clicked");
+                sites.model.SelectedSite = item;
+            }
+        };
+    </script>
+}
+
+
+
+

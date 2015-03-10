@@ -12,5 +12,6 @@ namespace Alman.Domain
     {
         public string DomainName { get; set; }
         public string Description { get; set; }
+        public DataPartition DataPartition { get; set; }
     }
 }

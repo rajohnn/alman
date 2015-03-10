@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/app/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Content("~/admin/main")">ADMINISTRATION</a>                
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <p class="navbar-text" style="font-weight:bold" id="timeLabel"></p>
+                <p class="navbar-text hidden-xs" style="font-weight:bold" id="dateLabel"></p>
+            </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>                            
+                            <a href="@Url.Content("~/admin/main/sites")"><i class="fa fa-globe fa-fw"></i> Sites</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/admin/main/services")"><i class="fa fa-tasks fa-rw"></i> Services</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/admin/main/listeditor")"><i class="fa fa-list fa-rw"></i> List Editor</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/admin/main/locationeditor")"><i class="fa fa-compass fa-rw"></i> Location Editor</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/admin/main/userroles")"><i class="fa fa-users fa-rw"></i> Role Management</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/admin/main/preferences")"><i class="fa fa-cogs fa-rw"></i> Preferences</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+    </div>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+        </div>
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            var timeLabel = $("#timeLabel");
+            var dateLabel = $("#dateLabel");
+            setInterval(function () {
+                timeLabel.text(moment().format("dddd h:mm:ss a"));
+                dateLabel.text(moment().format("LL"));
+            }, 1000)
+        });
+
+    </script>
+
+</body>
+</html>
