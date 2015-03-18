@@ -1,4 +1,5 @@
 ﻿using Alman.Domain;
+using Alman.Domain.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,18 @@ namespace Alman.Web.Areas.Admin.Models
 {
     public class SitesViewModel
     {
-        public List<SiteViewModel> Sites { get; set; }
-        public List<SiteViewModel> SelectedSites { get; set; }
+        public List<SiteHostDto> Sites { get; set; }
+        public List<SiteHostDto> SelectedSites { get; set; }
         
         public SitesViewModel() :this(null) { }
 
         public SitesViewModel(IEnumerable<VirtualHost> hosts)
         {            
-            this.Sites = new List<SiteViewModel>();
-            this.SelectedSites = new List<SiteViewModel>();
+            this.Sites = new List<SiteHostDto>();
+            this.SelectedSites = new List<SiteHostDto>();
 
             foreach(var host in hosts) {
-                var model = new SiteViewModel();
+                var model = new SiteHostDto();
                 model.HostId = host.Id;
                 model.PartitionName = host.DataPartition.Name;
                 model.HostName = host.DomainName;
@@ -31,12 +32,5 @@ namespace Alman.Web.Areas.Admin.Models
         }
     }
 
-    public class SiteViewModel {
-        public int HostId { get; set; }
-        public string PartitionName { get; set; }
-        public string HostName { get; set; }
-        public string HostDescription { get; set; }
-        public bool IsDeleted { get; set; }
-        public string LastModifiedBy { get; set; }
-    }
+    
 }

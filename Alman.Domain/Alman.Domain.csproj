@@ -50,6 +50,7 @@
     <Compile Include="Contact.cs" />
     <Compile Include="ContactPhoto.cs" />
     <Compile Include="DataPartition.cs" />
+    <Compile Include="DTO\SiteHostDto.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Phone.cs" />

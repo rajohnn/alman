@@ -151,6 +151,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AlmanAuthAttribute.cs" />
+    <Compile Include="App_Start\AlmanIdentity.cs" />
+    <Compile Include="App_Start\AlmanPrincipal.cs" />
+    <Compile Include="App_Start\ApplicationConstants.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -161,6 +165,7 @@
     <Compile Include="Areas\App\AppAreaRegistration.cs" />
     <Compile Include="Areas\App\Controllers\MainController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlmanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -384,6 +389,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\App\Models\" />
+    <Folder Include="Views\Alman\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

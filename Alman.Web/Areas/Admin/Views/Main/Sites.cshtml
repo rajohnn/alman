@@ -11,7 +11,7 @@
         <div class="col-lg-10">
             <h2>Alman Sites</h2>
         </div>
-        
+
         <div class="col-lg-2 hidden-sm hidden-xs hidden-md">
             <button type="button" class="btn btn-default" style="margin-top:15px;margin-bottom:5px">
                 <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Add New Site
@@ -26,42 +26,71 @@
         <div class="col-md-12">
             <div style="height:250px" data-bind="koGrid: {
                 data: Sites,
-                afterSelectionChange: sites.siteSelected, 
+                afterSelectionChange: sites.siteSelected,
                 selectedItems: SelectedSites,
                 multiselect: false,
                 footerVisible: false,
                 showFilter: false,
-                showColumnMenu: false,                
+                showColumnMenu: false,
                 displaySelectionCheckbox: false,
                 columnDefs: [
                     { field: 'HostId', displayName: 'Host Id', width: 70},
                     { field: 'HostName', displayName: 'Host Name', width: 140},
                     { field: 'PartitionName', displayName: 'Partition', width: 110},
                     { field: 'HostDescription', displayName: 'Description', width: '*' , minWidth: 120},
-                    { field: 'IsDeleted', displayName: 'Active', width: 90},
+                    { field: 'IsDeleted', displayName: 'Inactive', width: 90},
                     { field: 'LastModifiedBy', displayName: 'Last Modified', width: 120},
                 ]
             }"></div>
-        </div>        
+        </div>
     </div>
-    <hr/>
-    <div class="row">
-        <div data-bind="if: SelectedSites().length > 0">
-            Display: <span data-bind="text: SelectedSites()[0].HostId"></span>
+    <hr />
+    <div data-bind="visible: SelectedSites().length > 0, with: SelectedSites()[0]">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Host ID: </label>
+                <label data-bind="text: HostId"></label>
+            </div>
+        </div>       
+        <div class="row">
+            <div class="col-md-6">
+                <label for="hostName">Host Name</label>
+                <input id="hostName" class="form-control" data-bind="value: HostName" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="hostDescription">Description</label>
+                <textarea id="hostDescription" rows="5" class="form-control" data-bind="value: HostDescription"></textarea>
+            </div>
+        </div>        
+        <hr/>
+        <div class="row">
+            <div class="col-md-6">
+                <button id="updateChanges" type="button" class="btn btn-primary has-spinner" data-bind="click: sites.updateChanges">
+                    <span class="spinner">
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                    </span>&nbsp;Save Changes
+                </button>
+                <button type="button" class="btn btn-danger">
+                    Inactivate Site
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
 @section scripts {
     <script>
-        $(function () {
-            sites.init();
-        })
+    $(function () {
+        sites.init();
+    })
 
-        var sites = {
-            model: null,
-            init: function () {
-                var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+    var sites = {
+        model: null,
+        init: function () {
+            var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
                 if (serverModel) {
                     var container = $("#sites")[0];
                     sites.model = ko.mapping.fromJS(serverModel);
@@ -70,6 +99,32 @@
             },
             siteSelected: function() {
                 console.log("site selected");
+            },
+            updateChanges: function() {               
+
+                $("#updateChanges").addClass("active");
+                $("#updateChanges").prop("disabled", true);
+
+                var data = ko.mapping.toJSON(sites.model.SelectedSites()[0]);
+                var url = "/admin/main/UpdateSite";
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8"
+                })
+                .success(function (data, status, xhr) {
+                    console.log("success");
+                })
+                .fail(function (errorMessage) {
+                    console.log("failed");
+                })
+                .always(function() {
+                    $("#updateChanges").removeClass("active");
+                    $("#updateChanges").prop("disabled", false);
+                })
             }
         };
     </script>

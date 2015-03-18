@@ -1,6 +1,6 @@
 ﻿using Alman.Servics;
 using Alman.Domain;
-
+using Alman.Web;
 using Alman.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -8,11 +8,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading;
+using System.Web.Security;
 
 namespace Alman.Web.Controllers
 {
     public class AccountController : Controller
-    {
+    {        
         // GET: Account
         public ActionResult Login()
         {
@@ -40,6 +41,12 @@ namespace Alman.Web.Controllers
                     model.Message = "Authenticated";
                     model.FailureCount = 0;
                     model.IsAuthenticated = true;
+                    string formData = string.Format(Constants.TEMPLATE_COOKIE, user.Id, user.DataPartitionId);
+                    var authCookie = FormsAuthentication.GetAuthCookie(user.UserName, true);
+                    var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                    var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, formData);
+                    authCookie.Value = FormsAuthentication.Encrypt(newTicket);
+                    Response.Cookies.Add(authCookie);
                 }   
             }            
             return Json(model);

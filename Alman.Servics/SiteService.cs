@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Alman.Domain.DTO;
 
 namespace Alman.Servics
 {
@@ -19,6 +20,31 @@ namespace Alman.Servics
                 Where(vh => vh.DataPartitionId > 2);
             
             return sites;
+        }
+
+        public bool UpdateHost(SiteHostDto siteHostDto)
+        {   
+            var virtualHost = _ctx.VirtualHost.SingleOrDefault(vh => vh.Id == siteHostDto.HostId);
+            if (virtualHost != null)
+            {
+                virtualHost.DomainName = siteHostDto.HostName;
+                virtualHost.Description = siteHostDto.HostDescription;
+                _ctx.VirtualHost.Attach(virtualHost);
+                _ctx.Entry(virtualHost).State = EntityState.Modified;
+                try
+                {
+                    int count = _ctx.SaveChanges();
+                    return count > 0 ? true : false;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
+                return false;
+            }
+            else
+                return false;
+            
         }
     }
 }
