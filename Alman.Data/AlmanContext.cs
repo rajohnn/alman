@@ -56,6 +56,22 @@ namespace Alman.Data
         public virtual DbSet<DataPartition> DataPartitions { get; set; }
         public virtual DbSet<VirtualHost> VirtualHost { get; set; }
 
+        public virtual DbSet<ServiceCategory> ServiceCategories { get; set; }
+        public virtual DbSet<InterestLevel> InterestLevels { get; set; }
+        public virtual DbSet<StaffGroup> StaffGroups { get; set; }
+        public virtual DbSet<TenantContactRelationship> TenantContactRelationships { get; set; }
+        public virtual DbSet<TenantContactType> TenantContactTypes { get; set; }
+        public virtual DbSet<DiseaseStatus> DiseaseStatuses { get; set; }
+        public virtual DbSet<LogEntryType> LogEntryTypes { get; set; }
+        public virtual DbSet<RecreationInterestType> RecreationInterestTypes { get; set; }
+        public virtual DbSet<RiskLevel> RiskLevels { get; set; }
+        public virtual DbSet<SafetyConcern> SafetyConcerns { get; set; }
+        public virtual DbSet<RiskAgreement> RiskAgreements { get; set; }
+        public virtual DbSet<TemperatureLocation> TemperatureLocations { get; set; }
+        public virtual DbSet<BloodPressurePosition> BloodPressurePositions { get; set; }
+        public virtual DbSet<OxygenLPM> OxygenLPMs { get; set; }
+        public virtual DbSet<OxygenIntakeMethod> OxygenIntakeMethods { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().Map(m =>

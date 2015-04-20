@@ -13,12 +13,12 @@
         </div>
 
         <div class="col-lg-2 hidden-sm hidden-xs hidden-md">
-            <button type="button" class="btn btn-default" style="margin-top:15px;margin-bottom:5px">
+            <button type="button" data-bind="click: sites.addNew" class="btn btn-info" style="margin-top:15px;margin-bottom:5px">
                 <span class="fa fa-plus-circle"></span>&nbsp;&nbsp;Add New Site
             </button>
         </div>
         <div class="col-lg-2 hidden-lg">
-            <a style="margin-bottom:15px" href="#"><span class="fa fa-plus-circle"></span> Add New Site</a>
+            <a style="margin-bottom:15px" href="@Url.Content("~/Admin/Main/AddSite")"><span class="fa fa-plus-circle"></span> Add New Site</a>
         </div>
     </div>
     <hr style="margin-top:0" />
@@ -47,25 +47,34 @@
     <hr />
     <div data-bind="visible: SelectedSites().length > 0, with: SelectedSites()[0]">
         <div class="row">
-            <div class="col-md-6">
-                <label>Host ID: </label>
-                <label data-bind="text: HostId"></label>
-            </div>
-        </div>       
-        <div class="row">
-            <div class="col-md-6">
-                <label for="hostName">Host Name</label>
-                <input id="hostName" class="form-control" data-bind="value: HostName" />
-            </div>
-        </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="font-size:12pt">
+                                Host ID: <span data-bind="text: HostId"></span>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="hostDescription">Description</label>
-                <textarea id="hostDescription" rows="5" class="form-control" data-bind="value: HostDescription"></textarea>
+                </div>
+                <div class="panel-body">                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="hostName">Host Name</label>
+                            <input id="hostName" class="form-control" data-bind="value: HostName" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="hostDescription">Description</label>
+                            <textarea id="hostDescription" rows="5" class="form-control" data-bind="value: HostDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>        
-        <hr/>
         <div class="row">
             <div class="col-md-6">
                 <button id="updateChanges" type="button" class="btn btn-primary has-spinner" data-bind="click: sites.updateChanges">
@@ -83,14 +92,14 @@
 
 @section scripts {
     <script>
-    $(function () {
-        sites.init();
-    })
+        $(function () {
+            sites.init();
+        })
 
-    var sites = {
-        model: null,
-        init: function () {
-            var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+        var sites = {
+            model: null,
+            init: function () {
+                var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
                 if (serverModel) {
                     var container = $("#sites")[0];
                     sites.model = ko.mapping.fromJS(serverModel);
@@ -100,7 +109,10 @@
             siteSelected: function() {
                 console.log("site selected");
             },
-            updateChanges: function() {               
+            addNew: function() {
+                location.href = "@Url.Content("~/Admin/Main/AddSite")";
+            },
+            updateChanges: function() {
 
                 $("#updateChanges").addClass("active");
                 $("#updateChanges").prop("disabled", true);

@@ -1,4 +1,5 @@
-﻿using Alman.Domain.DTO;
+﻿using Alman.Domain;
+using Alman.Domain.DTO;
 using Alman.Servics;
 using Alman.Web.Areas.Admin.Models;
 using Alman.Web.Controllers;
@@ -18,6 +19,7 @@ namespace Alman.Web.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Sites()
         {
             var service = new SiteService();
@@ -32,13 +34,25 @@ namespace Alman.Web.Areas.Admin.Controllers
         public ActionResult UpdateSite(SiteHostDto model)
         {
             bool updated = false;
+
             if (model != null)
             {
-                var service = new SiteService();
-                updated = service.UpdateHost(model);
+                var service = new SiteService();                 
+                updated = service.UpdateHost(model, this.CurrentUser);                
             }
-
             return Json(updated);
+        }
+
+        public ActionResult AddSite()
+        {
+            var site = new SiteViewModel();
+            return View(site);
+        }
+
+        [HttpPost]
+        public ActionResult AddSite(SiteViewModel vm)
+        {
+            return View(vm);
         }
 
         public ActionResult Services()

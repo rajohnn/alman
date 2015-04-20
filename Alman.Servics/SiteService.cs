@@ -22,28 +22,27 @@ namespace Alman.Servics
             return sites;
         }
 
-        public bool UpdateHost(SiteHostDto siteHostDto)
+        public VirtualHost GetHost(int hostId)
+        {
+            return _ctx.VirtualHost.Include(vh => vh.DataPartition).Include(vh => vh.ModifiedBy).SingleOrDefault(vh => vh.Id == hostId);
+        }
+
+        public bool UpdateHost(SiteHostDto siteHostDto, User user)
         {   
-            var virtualHost = _ctx.VirtualHost.SingleOrDefault(vh => vh.Id == siteHostDto.HostId);
+            var virtualHost = GetHost(siteHostDto.HostId);
             if (virtualHost != null)
             {
                 virtualHost.DomainName = siteHostDto.HostName;
                 virtualHost.Description = siteHostDto.HostDescription;
+                virtualHost.LastModified = DateTime.Now;
+                virtualHost.ModifiedById = user.Id;
                 _ctx.VirtualHost.Attach(virtualHost);
-                _ctx.Entry(virtualHost).State = EntityState.Modified;
-                try
-                {
-                    int count = _ctx.SaveChanges();
-                    return count > 0 ? true : false;
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
-                }
-                return false;
+                _ctx.Entry(virtualHost).State = EntityState.Modified;                
+                int count = _ctx.SaveChanges();
+                return count > 0 ? true : false;
             }
             else
-                return false;
+                throw new NullReferenceException("The host ID (" + siteHostDto.HostId + ") you are attempting to update does not exist.");
             
         }
     }

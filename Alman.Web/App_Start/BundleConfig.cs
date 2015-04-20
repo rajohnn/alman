@@ -23,7 +23,7 @@ namespace Alman.Web
                 "~/Scripts/metisMenu.js",
                 "~/Scripts/raphael.js",                
                 "~/Scripts/moment.js",                
-                "~/Scripts/respond.js",   
+                "~/Scripts/respond.js",                   
                 "~/Scripts/koGrid-{version}.js",
                 "~/Scripts/app.js"
             ));
@@ -42,7 +42,7 @@ namespace Alman.Web
             ));
 
             bundles.Add(new StyleBundle("~/Content/app/css").Include(
-                "~/Content/bootstrap.css",
+                "~/Content/bootstrap.css",                
                 "~/Content/metisMenu.css",
                 "~/Content/timeline.css",
                 "~/Content/app.css",

@@ -41,15 +41,22 @@ namespace Alman.Web.Controllers
                     model.Message = "Authenticated";
                     model.FailureCount = 0;
                     model.IsAuthenticated = true;
-                    string formData = string.Format(Constants.TEMPLATE_COOKIE, user.Id, user.DataPartitionId);
-                    var authCookie = FormsAuthentication.GetAuthCookie(user.UserName, true);
-                    var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                    var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, formData);
-                    authCookie.Value = FormsAuthentication.Encrypt(newTicket);
-                    Response.Cookies.Add(authCookie);
+                    string data = string.Format(Constants.TEMPLATE_COOKIE, user.Id, user.DataPartitionId);
+                    var cookie = CreateAuthorizationTicket(user, data);
+                    
+                    Response.Cookies.Add(cookie);
                 }   
             }            
             return Json(model);
+        }
+
+        private HttpCookie CreateAuthorizationTicket(User user, string data)
+        {
+            var authCookie = FormsAuthentication.GetAuthCookie(user.UserName, true);
+            var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+            var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, data);
+            authCookie.Value = FormsAuthentication.Encrypt(newTicket);
+            return authCookie;
         }
 
         public ActionResult ResetPassword()

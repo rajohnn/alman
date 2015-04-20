@@ -21,7 +21,7 @@
                 <a class="navbar-brand" href="@Url.Content("~/admin/main")">ADMINISTRATION</a>                
             </div>
             <!-- /.navbar-header -->
-            <ul class="nav navbar-top-links navbar-right">
+            <ul class="nav navbar-top-links navbar-right hidden-xs">
                 <p class="navbar-text" style="font-weight:bold" id="timeLabel"></p>
                 <p class="navbar-text hidden-xs" style="font-weight:bold" id="dateLabel"></p>
             </ul>
@@ -29,9 +29,9 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>                            
+                        <li>
                             <a href="@Url.Content("~/admin/main/sites")"><i class="fa fa-globe fa-fw"></i> Sites</a>
-                        </li>
+                        </li>                        
                         <li>
                             <a href="@Url.Content("~/admin/main/services")"><i class="fa fa-tasks fa-rw"></i> Services</a>
                         </li>

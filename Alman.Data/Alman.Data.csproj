@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201503101856236_VirtualHost_Change.Designer.cs">
       <DependentUpon>201503101856236_VirtualHost_Change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504202333587_april20_2015.cs" />
+    <Compile Include="Migrations\201504202333587_april20_2015.Designer.cs">
+      <DependentUpon>201504202333587_april20_2015.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503101856236_VirtualHost_Change.resx">
       <DependentUpon>201503101856236_VirtualHost_Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504202333587_april20_2015.resx">
+      <DependentUpon>201504202333587_april20_2015.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

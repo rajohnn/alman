@@ -1,0 +1,118 @@
+﻿@using Newtonsoft.Json
+@using Alman.Domain
+@{
+    ViewBag.Title = "AddNewSite";
+    Layout = "~/Areas/Admin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<form id="form-site">
+    <div class="row" style="margin-top:15px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            Create a new Alman account
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="partitionName">Partition Name</label>
+                                <input id="partitionName" maxlength="30" placeholder="Unique name for the data partition" class="form-control" data-bind="value: PartitionName" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-8">
+                                <label for="facilityId">Facility Identifier</label>
+                                <input id="facilityId" type="text" placeholder="ID Number" class="form-control" data-bind="value: FacilityId" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-8">
+                                <label for="description">Site Description</label>
+                                <textarea id="description" rows="5" placeholder="Type a description of the site here" class="form-control" data-bind="value: Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <button id="createSite" type="button" data-bind="click: site.createSite" class="btn btn-primary has-spinner">
+                <span class="spinner">
+                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                </span>&nbsp;Create Site
+            </button>
+            <button id="cancel" onclick="site.navigateToSites()" type="button" class="btn btn-warning">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        $(function () {
+            site.init();
+        });
+
+        var site = {
+            model: null,
+            init: function () {
+                var serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+                if (serverModel) {
+                    var container = $("#form-site")[0];
+                    site.model = ko.mapping.fromJS(serverModel);
+                    ko.applyBindings(site.model, container);
+                }
+            },
+            navigateToSites: function() {
+                location.href = "@Url.Content("~/Admin/Main/Sites")";
+            },
+            createSite: function() {
+                site.toggleLoader(true);
+                
+                var data = ko.mapping.toJSON(site.model);
+                var url = "@Url.Content("~/Admin/Main/AddSite")";
+
+                $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8"
+                })
+               .success(function (data, status, xhr) {
+                   if (data) {
+                
+                   }
+               })
+               .fail(function (errorMessage) {                   
+                   console.log(errorMessage);
+               })
+                .always(function () {
+                    site.toggleLoader(false);
+                })
+            },
+            toggleLoader: function(isLoading) {
+                if (isLoading) {
+                    $("#createSite").addClass("active");
+                    $("#createSite").prop("disabled", true);
+                }
+                else {
+                    $("#createSite").removeClass("active");
+                    $("#createSite").prop("disabled", true);
+                }
+            }
+        }
+    </script>
+}
+

@@ -19,6 +19,9 @@ body {
 .huge {
   font-size: 40px;
 }
+label {
+  margin-top: 5px;
+}
 .spinner {
   display: inline-block;
   opacity: 0;

@@ -10,6 +10,11 @@ namespace Alman.Servics
 {
     public class UserService : ServiceBase
     {
+        public User GetUserById(int id)
+        {            
+            return _ctx.Users.SingleOrDefault(u => u.Id == id);
+        }
+
         public User Login(string facility, string username, string password, out string message)
         {
             User authenticatedUser = null;

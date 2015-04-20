@@ -85,7 +85,7 @@ namespace Alman.Domain
     [Table("RiskAgreement")]
     public class RiskAgreement : SelectionTypeEntity { }
 
-    [Table("TemperateLocation")]
+    [Table("TemperatureLocation")]
     public class TemperatureLocation : SelectionTypeEntity { }
 
     [Table("BloodPressurePosition")]
