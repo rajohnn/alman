@@ -162,6 +162,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\MainController.cs" />
     <Compile Include="Areas\Admin\Models\AlmanServicesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ListEditorModel.cs" />
     <Compile Include="Areas\Admin\Models\SitesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SiteViewModel.cs" />
     <Compile Include="Areas\App\AppAreaRegistration.cs" />

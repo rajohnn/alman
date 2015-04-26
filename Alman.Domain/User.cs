@@ -22,6 +22,13 @@ namespace Alman.Domain
         [NotMapped]
         public string TemporaryPassword { get; set; }
 
+        public bool IsRoot()
+        {
+            if (this.Id == 1)
+                return true;
+            return false;
+        }
+
         public bool CheckPassword(string candidate)
         {
             if (String.IsNullOrEmpty(candidate))

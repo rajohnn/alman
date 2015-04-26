@@ -13,6 +13,107 @@ namespace Alman.Servics
         public SelectionEntityService() : base() { }
         public SelectionEntityService(AlmanContext context) : base(context) { }
 
+        public IEnumerable<SelectionTypeEntity> GetEntitiesByType(string type)
+        {
+            var list = new List<SelectionTypeEntity>();
+            switch (type)
+            {
+                case SelectionEntities.BLOOD_PRESSURE_POSITION:
+                    break;
+
+                case SelectionEntities.CARE_ITEM:
+                    break;
+
+                case SelectionEntities.DISEASE:
+                    break;
+
+                case SelectionEntities.DISEASE_STATUS:
+                    break;
+
+                case SelectionEntities.EXIT_REASON:
+                    break;
+
+                case SelectionEntities.FEATURE:
+                    break;
+
+                case SelectionEntities.FLOOR_PLAN:
+                    break;
+
+                case SelectionEntities.IDENTIFICATION_TYPE:
+                    break;
+
+                case SelectionEntities.INCIDENT_TYPE:
+                    break;
+
+                case SelectionEntities.INTEREST_LEVEL:
+                    break;
+
+                case SelectionEntities.KITCHEN_TYPE:
+                    break;
+
+                case SelectionEntities.LAYOUT_TYPE:
+                    break;
+
+                case SelectionEntities.LOCATION_TYPE:
+                    break;
+
+                case SelectionEntities.LOG_ENTRY_TYPE:
+                    break;
+
+                case SelectionEntities.NOT_DONE_REASON:
+                    break;
+
+                case SelectionEntities.OXYGEN_INTAKE_METHOD:
+                    break;
+
+                case SelectionEntities.OXYGEN_LPM:
+                    break;
+
+                case SelectionEntities.RECREATION_INTEREST_TYPE:
+                    break;
+
+                case SelectionEntities.RISK_AGREEMENT:
+                    break;
+
+                case SelectionEntities.RISK_LEVEL:
+                    break;
+
+                case SelectionEntities.SAFETY_CONCERN:
+                    break;
+
+                case SelectionEntities.SERVICE_CATEGORY:
+                    break;
+
+                case SelectionEntities.SHIFT:
+                    break;
+
+                case SelectionEntities.STAFF_GROUP:
+                    break;
+
+                case SelectionEntities.TEMPERATURE_LOCATION:
+                    break;
+
+                case SelectionEntities.TENANT_CATEGORY:
+                    break;
+
+                case SelectionEntities.TENANT_CONTACT_RELATIONSHIP:
+                    break;
+
+                case SelectionEntities.TENANT_CONTACT_TYPE:
+                    break;
+
+                case SelectionEntities.TENANT_TYPE:
+                    break;
+
+                case SelectionEntities.VIEW_TYPE:
+                    break;
+                    
+                default:
+                    break;
+            }
+            return list;
+        }
+
         public IEnumerable<ServiceCategory> GetServiceCategories(int partitionId)
         {
             return _ctx.ServiceCategories.Where(c => c.DataPartitionId == partitionId).ToList();          

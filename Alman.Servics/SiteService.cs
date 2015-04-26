@@ -6,11 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alman.Domain.DTO;
+using Alman.Data;
 
 namespace Alman.Servics
 {
     public class SiteService : ServiceBase
     {
+        public SiteService() : base() { }
+        public SiteService(AlmanContext context) : base(context) { }
+
         public IEnumerable<VirtualHost> GetSites()
         {
             // partion 1 is root, partion 2 is for templates

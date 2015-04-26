@@ -62,7 +62,18 @@ namespace Alman.Web.Areas.Admin.Controllers
 
         public ActionResult ListEditor()
         {
-            return View();
+            var vm = new ListEditorModel();
+            var service = new DataPartitionService();
+            vm.DataPartitions = service.GetValidPartitions(this.CurrentUser).ToList();            
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult GetEntities(string listType)
+        {
+            var service = new SelectionEntityService();
+            var result= service.GetEntitiesByType(listType);
+            return Json(new { Success=true, Data=result }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LocationEditor()
